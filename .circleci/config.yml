@@ -54,4 +54,6 @@ jobs:
           command: |
             export IMAGE="AbdulazizGH/udacity-capstone:${CIRCLE_WORKFLOW_ID:0:7}"
             sed -i .yml "s%image\: AbdulazizGH\/udacity\-capstone%image\: ${IMAGE}%g" "k8s/deployment.yml"
+            
+            aws eks --region eu-west-3 update-kubeconfig --name k8s-test-eks-EKS-Cluster
             kubectl apply -f k8s/deployment.yml
