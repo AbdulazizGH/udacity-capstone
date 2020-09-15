@@ -68,7 +68,6 @@ jobs:
             docker build . --tag=udacity-capstone:${CIRCLE_WORKFLOW_ID:0:7}
             docker tag udacity-capstone:${CIRCLE_WORKFLOW_ID:0:7} $IMAGE
             docker push $IMAGE
-            docker push abdulazizgh/udacity-capstone:latest
       - run:
           name: Deploy to Kubernetes cluster
           command: |
