@@ -5,12 +5,12 @@
 
 # Step 1:
 # Create dockerpath
-dockerpath="abdulazizgh/ml-microservices"
+dockerpath="abdulazizgh/udacity-capstone"
 
 # Step 2:  
 # Authenticate & tag
 echo "Docker ID and Image: $dockerpath"
-docker tag ml-microservices $dockerpath
+docker tag udacity-capstone $dockerpath
 docker login --username abdulazizgh
 
 # Step 3:

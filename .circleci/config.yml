@@ -9,7 +9,7 @@ jobs:
     # Use the same Docker base as the project
       - image: python:3.7.3-stretch
 
-    working_directory: ~/repo
+    working_directory: ~/
 
     steps:
       - checkout
@@ -41,3 +41,17 @@ jobs:
           command: |
             . venv/bin/activate
             make lint 
+      - run:
+          name: Build, tag and push image
+          command: |
+            export IMAGE="AbdulazizGH/udacity-capstone:${CIRCLE_WORKFLOW_ID:0:7}"
+            docker build . --tag=$IMAGE
+            docker tag udacity-capstone:${CIRCLE_WORKFLOW_ID:0:7} $IMAGE
+            docker push $IMAGE
+            docker push AbdulazizGH/udacity-capstone:latest
+      - run:
+          name: Deploy to Kubernetes cluster
+          command: |
+            export IMAGE="AbdulazizGH/udacity-capstone:${CIRCLE_WORKFLOW_ID:0:7}"
+            sed -i .yml "s%image\: AbdulazizGH\/udacity\-capstone%image\: ${IMAGE}%g" "k8s/deployment.yml"
+            kubectl apply -f k8s/deployment.yml

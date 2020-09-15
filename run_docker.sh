@@ -4,10 +4,10 @@
 
 # Step 1:
 # Build image and add a descriptive tag
-docker build . --tag=ml-microservices
+docker build . --tag=udacity-capstone
 
 # Step 2: 
 docker image ls
 
 # Step 3: 
-docker run -p 8000:80 ml-microservices
+docker run -p 8000:80 udacity-capstone

@@ -1,0 +1,1 @@
+aws cloudformation deploy --stack-name $1 --template-file cloudformation/network.yml --region eu-west-3
