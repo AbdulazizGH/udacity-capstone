@@ -40,7 +40,6 @@ jobs:
       - run:
           name: Install deployment dependencies
           command: |
-            . venv/bin/deactivate 
             apt-get update
             apt-get -y install \
                 apt-transport-https \
