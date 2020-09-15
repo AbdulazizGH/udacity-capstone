@@ -63,7 +63,6 @@ jobs:
       - run:
           name: Build, tag and push image
           command: |
-            dockerd &> dockerd-logfile &
             export IMAGE="abdulazizgh/udacity-capstone:${CIRCLE_WORKFLOW_ID:0:7}"
             docker build . --tag=$IMAGE
             docker tag udacity-capstone:${CIRCLE_WORKFLOW_ID:0:7} $IMAGE
