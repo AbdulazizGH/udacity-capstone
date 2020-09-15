@@ -60,16 +60,16 @@ jobs:
       - run:
           name: Build, tag and push image
           command: |
-            export IMAGE="AbdulazizGH/udacity-capstone:${CIRCLE_WORKFLOW_ID:0:7}"
+            export IMAGE="abdulazizgh/udacity-capstone:${CIRCLE_WORKFLOW_ID:0:7}"
             docker build . --tag=$IMAGE
             docker tag udacity-capstone:${CIRCLE_WORKFLOW_ID:0:7} $IMAGE
             docker push $IMAGE
-            docker push AbdulazizGH/udacity-capstone:latest
+            docker push abdulazizgh/udacity-capstone:latest
       - run:
           name: Deploy to Kubernetes cluster
           command: |
-            export IMAGE="AbdulazizGH/udacity-capstone:${CIRCLE_WORKFLOW_ID:0:7}"
-            sed -i .yml "s%image\: AbdulazizGH\/udacity\-capstone%image\: ${IMAGE}%g" "k8s/deployment.yml"
+            export IMAGE="abdulazizgh/udacity-capstone:${CIRCLE_WORKFLOW_ID:0:7}"
+            sed -i .yml "s%image\: abdulazizgh\/udacity\-capstone%image\: ${IMAGE}%g" "k8s/deployment.yml"
 
             aws eks --region eu-west-3 update-kubeconfig --name k8s-test-eks-EKS-Cluster
             kubectl apply -f k8s/deployment.yml
