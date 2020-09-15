@@ -27,7 +27,7 @@ jobs:
             wget -O /bin/hadolint https://github.com/hadolint/hadolint/releases/download/v1.17.5/hadolint-Linux-x86_64 &&\
                 chmod +x /bin/hadolint
             apt-get update
-            apt-get install \
+            apt-get -y install \
                 apt-transport-https \
                 ca-certificates \
                 curl \
@@ -40,7 +40,7 @@ jobs:
             $(lsb_release -cs) \
             stable"
             apt-get update
-            apt-get install docker-ce docker-ce-cli containerd.io
+            apt-get -y install docker-ce docker-ce-cli containerd.io
       - save_cache:
           paths:
             - ./venv
