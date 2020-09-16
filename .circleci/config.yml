@@ -54,9 +54,14 @@ jobs:
             stable"
             apt-get update
             apt-get -y install docker-ce docker-ce-cli containerd.io
+            
+            curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
+            chmod +x ./kubectl
+            mv ./kubectl /usr/local/bin/kubectl
 
             pip install awscli
             aws --version
+            kubectl version --client
 
       - setup_remote_docker
       - run:
@@ -68,6 +73,7 @@ jobs:
             docker build . --tag=udacity-capstone:${CIRCLE_WORKFLOW_ID:0:7}
             docker tag udacity-capstone:${CIRCLE_WORKFLOW_ID:0:7} $IMAGE
             docker push $IMAGE
+    
       - run:
           name: Deploy to Kubernetes cluster
           command: |
