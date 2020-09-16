@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: udacity-capstone
-          image: AbdulazizGH/udacity-capstone
+          image: abdulazizgh/udacity-capstone:aba4621
           imagePullPolicy: Always
   selector:
     matchLabels:
