@@ -14,7 +14,7 @@ spec:
     metadata:
       name: web-app
       labels:
-        app: kubia
+        app: web-app
     spec:
       containers:
         - name: udacity-capstone
